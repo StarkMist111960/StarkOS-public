@@ -9,5 +9,5 @@ If this damages your hardware I am not responsible.
 Use the following command to build the OS using the including bash file:
 
 ```
-bash <(curl -Ls https://raw.githubusercontent.com/StarkMist111960/StarkOS/main/build/build.sh) 
+bash <(curl -Ls https://raw.githubusercontent.com/StarkMist111960/StarkOS-public/main/StarkOS/build/build.sh) 
 ```
