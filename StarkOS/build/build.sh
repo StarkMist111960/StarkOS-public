@@ -11,7 +11,7 @@ echo 'cloning repo'
 
 git clone --depth 1 https://github.com/StarkMist111960/StarkOS-public.git
 
-  cd ~/StarkOS/main
+  cd ~/StarkOS-public/main
   
   echo 'installing needed things and stuff...'
 
@@ -22,27 +22,27 @@ git clone --depth 1 https://github.com/StarkMist111960/StarkOS-public.git
   sleep 4
   echo 'installed needed things successfully, continuing to build'
 
-rm -rf ~/StarkOS/main/output
-mkdir ~/StarkOS/main/output
+rm -rf ~/StarkOS-public/main/output
+mkdir ~/StarkOS-public/main/output
 
-	nasm -f elf32 boot/boot.asm -o ~/StarkOS/main/output/boot.o
+	nasm -f elf32 boot/boot.asm -o ~/StarkOS-public/main/output/boot.o
 
 	gcc -m32 -ffreestanding -Iinclude -c kernel/kernel.c \
-  	-o ~/StarkOS/main/output/kernel.o \
+  	-o ~/StarkOS-public/main/output/kernel.o \
   	-fmax-include-depth=1000
 
 gcc -m32 -ffreestanding -Iinclude -c include/keyboard.c \
-  -o ~/StarkOS/main/output/keyboard.o \
+  -o ~/StarkOS-public/main/output/keyboard.o \
   -fmax-include-depth=1000
 
-ld -m elf_i386 -T linker.ld -o ~/StarkOS/main/kernel/kernel.bin \
-  ~/StarkOS/main/output/boot.o \
-  ~/StarkOS/main/output/kernel.o \
-  ~/StarkOS/main/output/keyboard.o
+ld -m elf_i386 -T linker.ld -o ~/StarkOS-public/main/kernel/kernel.bin \
+  ~/StarkOS-public/main/output/boot.o \
+  ~/StarkOS-public/main/output/kernel.o \
+  ~/StarkOS-public/main/output/keyboard.o
 
-cp ~/StarkOS/main/kernel/kernel.bin ~/StarkOS/main/iso/boot/
+cp ~/StarkOS-public/main/kernel/kernel.bin ~/StarkOS-public/main/iso/boot/
 
-  grub-mkrescue -o ~/StarkOS/main/StarkOS.iso iso
+  grub-mkrescue -o ~/StarkOS-public/main/StarkOS.iso iso
 
   echo 'Success! Things ran and built flawlessly, use this qemu command to test in a VM (or flash to a usb idc): qemu-system-i386 -cdrom StarkOS.iso'
 
