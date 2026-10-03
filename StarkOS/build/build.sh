@@ -13,57 +13,57 @@ read -p 'in correct dir? (y, n)' ANS3
 
 if [ $ANS3 = 'y' ]; then
 
-	echo 'cloning repo'
+        echo 'cloning repo'
 
-	git clone --depth 1 https://github.com/StarkMist111960/StarkOS-public.git
+        git clone --depth 1 https://github.com/StarkMist111960/StarkOS-public.git
 
-  	cd ~/StarkOS-public/main
-  
-  	echo 'installing needed things and stuff...'
+        cd ~/StarkOS-public/StarkOS/main
 
-  	sudo apt update && sudo apt upgrade
-  	sleep 2
-  
-  	sudo apt install -y build-essential nasm grub-pc-bin xorriso mtools qemu-system-x86
-  	sleep 4
-  	echo 'installed needed things successfully, continuing to build'
+        echo 'installing needed things and stuff...'
 
-	rm -rf ~/StarkOS-public/main/output
-	mkdir ~/StarkOS-public/main/output
+        sudo apt update && sudo apt upgrade
+        sleep 2
 
-		nasm -f elf32 boot/boot.asm -o ~/StarkOS-public/main/output/boot.o
+        sudo apt install -y build-essential nasm grub-pc-bin xorriso mtools qemu-system-x86
+        sleep 4
+        echo 'installed needed things successfully, continuing to build'
 
-		gcc -m32 -ffreestanding -Iinclude -c kernel/kernel.c \
-  		-o ~/StarkOS-public/main/output/kernel.o \
-  		-fmax-include-depth=1000
+        rm -rf ~/StarkOS-public/StarkOS/main/output
+        mkdir ~/StarkOS-public/StarkOS/main/output
 
-	gcc -m32 -ffreestanding -Iinclude -c include/keyboard.c \
-  	-o ~/StarkOS-public/main/output/keyboard.o \
-  	-fmax-include-depth=1000
+                nasm -f elf32 boot/boot.asm -o ~/StarkOS-public/StarkOS/main/output/boot.o
 
-	ld -m elf_i386 -T linker.ld -o ~/StarkOS-public/main/kernel/kernel.bin \
-  	~/StarkOS-public/main/output/boot.o \
-  	~/StarkOS-public/main/output/kernel.o \
-  	~/StarkOS-public/main/output/keyboard.o
+                gcc -m32 -ffreestanding -Iinclude -c kernel/kernel.c \
+                -o ~/StarkOS-public/StarkOS/main/output/kernel.o \
+                -fmax-include-depth=1000
 
-	cp ~/StarkOS-public/main/kernel/kernel.bin ~/StarkOS-public/main/iso/boot/
+        gcc -m32 -ffreestanding -Iinclude -c include/keyboard.c \
+        -o ~/StarkOS-public/StarkOS/main/output/keyboard.o \
+        -fmax-include-depth=1000
 
-  	grub-mkrescue -o ~/StarkOS-public/main/StarkOS.iso iso
+        ld -m elf_i386 -T linker.ld -o ~/StarkOS-public/StarkOS/main/kernel/kernel.bin \
+        ~/StarkOS-public/StarkOS/main/output/boot.o \
+        ~/StarkOS-public/StarkOS/main/output/kernel.o \
+        ~/StarkOS-public/StarkOS/main/output/keyboard.o
 
-  	echo 'Success! Things ran and built flawlessly, use this qemu command to test in a VM (or flash to a usb idc): qemu-system-i386 -cdrom StarkOS.iso'
+        cp ~/StarkOS-public/StarkOS/main/kernel/kernel.bin ~/StarkOS-public/StarkOS/main/iso/boot/
 
-  	read -p 'would you like to use the qemu command (y, n)? ' ANS2
+        grub-mkrescue -o ~/StarkOS-public/StarkOS/main/StarkOS.iso iso
 
-	else
-		exit 1
+        echo 'Success! Things ran and built flawlessly, use this qemu command to test in a VM (or flash to a usb idc): qemu-system-i386 -cdrom StarkOS.iso'
+
+        read -p 'would you like to use the qemu command (y, n)? ' ANS2
+
+        else
+                exit 1
 fi
-	
+
     if [ $ANS2 = 'y' ]; then
       qemu-system-i386 -cdrom StarkOS.iso
 
     else
       echo 'cancelled, now exiting'
-      
+
       sleep 3
 
       exit 1
