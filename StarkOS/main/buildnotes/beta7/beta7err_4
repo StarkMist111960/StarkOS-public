@@ -1,0 +1,59 @@
+use of this requires WSL or a linux distribution that supports APT
+do you wish to continue (y,n)? y
+installing needed things and stuff...
+Hit:1 http://security.ubuntu.com/ubuntu resolute-security InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu resolute InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu resolute-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu resolute-backports InRelease
+2 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Get more security updates through Ubuntu Pro with 'esm-apps' enabled:
+  libmagickcore-7.q16-10 libimage-magick-perl imagemagick-7-common
+  node-lodash-packages imagemagick python3-pip-whl node-shell-quote
+  libmagickwand-7.q16-10 libopenexr-3-1-30 node-lodash
+  libmagickcore-7.q16-10-extra libimage-magick-q16-perl imagemagick-7.q16
+  python3-pip python3-nltk
+Learn more about Ubuntu Pro at https://ubuntu.com/pro
+Not upgrading yet due to phasing:
+  python3-software-properties  software-properties-common
+
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 2
+build-essential is already the newest version (12.12ubuntu2.26.04.2).
+nasm is already the newest version (3.01-1).
+grub-pc-bin is already the newest version (2.14-2ubuntu2.1).
+xorriso is already the newest version (1:1.5.6-1.1ubuntu4).
+mtools is already the newest version (4.0.49-1).
+qemu-system-x86 is already the newest version (1:10.2.1+ds-1ubuntu3.2).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 2
+installed needed things successfully, continuing to build...
+rmdir: failed to remove 'output': No such file or directory
+/home/raynon/StarkOS/main/kernel/kernel.c: In function ‘kernel_main’:
+/home/raynon/StarkOS/main/kernel/kernel.c:71:29: error: implicit declaration of function ‘inb’ [-Wimplicit-function-declaration]
+   71 |                         if((inb(0x64) & 1) == 0)
+      |                             ^~~
+/home/raynon/StarkOS/main/kernel/kernel.c:91:42: error: ‘keyboard_map’ undeclared (first use in this function); did you mean ‘keyboard_getchar’?
+   91 |                                 char c = keyboard_map[key];
+      |                                          ^~~~~~~~~~~~
+      |                                          keyboard_getchar
+/home/raynon/StarkOS/main/kernel/kernel.c:91:42: note: each undeclared identifier is reported only once for each function it appears in
+/usr/bin/x86_64-linux-gnu-ld.bfd: -f may not be used without -shared
+cp: cannot stat 'kernel/kernel.bin': No such file or directory
+xorriso 1.5.6 : RockRidge filesystem manipulator, libburnia project.
+
+Drive current: -outdev 'stdio:StarkOS.iso'
+Media current: stdio file, overwriteable
+Media status : is blank
+Media summary: 0 sessions, 0 data blocks, 0 data,  929g free
+Added to ISO image: directory '/'='/tmp/grub.ppn8KR'
+xorriso : UPDATE :     316 files added in 1 seconds
+Added to ISO image: directory '/'='/home/raynon/StarkOS/main/iso'
+xorriso : UPDATE :     319 files added in 1 seconds
+xorriso : NOTE : Copying to System Area: 512 bytes from file '/usr/lib/grub/i386-pc/boot_hybrid.img'
+ISO image produced: 2698 sectors
+Written to medium : 2698 sectors at LBA 0
+Writing to 'stdio:StarkOS.iso' completed successfully.
+
+Success! Things ran and built flawlessly, use this qemu command to test in a VM (or flash to a usb idc): qemu-system-i386 -cdrom StarkOS.iso
+would you like to use the qemu command (y, n)? N
+cancelled, now exiting
