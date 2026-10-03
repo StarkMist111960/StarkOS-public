@@ -7,6 +7,10 @@ read -p 'do you wish to continue (y,n)? ' ANS
 
 if [ $ANS = 'y' ]; then
 
+echo 'cloning repo'
+
+git clone --depth 1 https://github.com/StarkMist111960/StarkOS-public.git
+
   cd ~/StarkOS/main
   
   echo 'installing needed things and stuff...'
