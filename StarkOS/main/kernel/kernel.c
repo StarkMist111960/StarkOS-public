@@ -63,6 +63,10 @@ void kernel_main() {
 
         clear_screen();
 
+			print("Welcome to StarkOS"\n)
+			print("Version: Beta 0.8"\n)
+			print("starkosuser")
+	
         void backspace() {
                 if(cursor <= 78) return;
 
